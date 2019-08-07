@@ -11,8 +11,16 @@ app.get("/",function(req,res){
 app.get("/search",function(req,res){
 	res.send("Search Page");
 })
-app.post("/search/:products",function(req,res){
-	rp(url1 + req.params.products + url2).then(function(html) {
+app.post("/*",function(req,res){
+	const url=req.url;
+	console.log(url);
+	console.log(typeof(url));
+	let changedUrl="";
+	for(let i=1;i<url.length;i++){
+		changedUrl+=url[i];
+	}
+	console.log(changedUrl);
+	rp(changedUrl).then(function(html) {
 	    //success!
 	    const amazonUrls = [];
 	    for (let i = 0; i < 8; i++) {
